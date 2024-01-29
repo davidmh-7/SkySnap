@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Snap | Menu</title>
+    <!-- Estilos CSS -->
+    <link rel="stylesheet" href="/css/nav.css">
+    <link rel="stylesheet" href="/css/index.css">
+    <link rel="stylesheet" href="css/tooltip.css">
+    <!--Leaflet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+    <!-- Chart js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- JQuery  -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <div class="menu">
+        <ion-icon name="menu-outline"></ion-icon>
+        <ion-icon name="close-outline"></ion-icon>
+    </div>
+
+    <div class="barra-lateral">
+        <div>
+            <div class="nombre-pagina">
+                <ion-icon id="cloud" name="cloud-outline" style="text-shadow: 0 0 3px rgb(3, 3, 3);"></ion-icon>
+                <span>Sky Snap</span>
+            </div>
+        </div>
+        <div class="linea"></div>
+        <nav class="navegacion">
+            <ul>
+                <li>
+                    <a id="inbox" href="#">
+                        <ion-icon name="map"></ion-icon>
+                        <span>Panel</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <ion-icon name="star-sharp"></ion-icon>
+                        <span>Guardados</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        <ion-icon name="cloud-outline"></ion-icon>
+                        <span>Tiempo</span>
+                    </a>
+                </li>
+                <li>
+                    <ul id="favoritos"></ul>
+                </li>
+                <li>
+                    <a id="ContendorRemove">
+                        <ion-icon name="trash-outline"></ion-icon>
+                        <span id="eliminarCiudades" onclick="eliminarCiudades()">Remove</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <div>
+            <div class="linea"></div>
+
+            <div class="modo-oscuro" onclick="logout()">
+                <div class="info">
+                    <ion-icon name="log-out-outline"></ion-icon>
+                    <span>Sign-out</span>
+                </div>
+                <div class="switch">
+                    <div class="base">
+                        <div class="circulo">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="usuario">
+                <img src="/img/Nublado.png" alt="">
+                <div class="info-usuario">
+                    <div class="nombre-email">
+                        <span class="nombre">Davidmh-7</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <main>
+        <div class="CuadradoGrande">
+            <div class="cuadrado1">
+                <img src="/img/Nublado.png" alt="">
+                <!-- Es provisional Quitar el numero de temperatura!!! -->
+                <h5 id="Temperatura">28ºC</h5>
+                <h5 id="AccionTiempo">Soleado</h5>
+                <h6>
+                    <div class="lineaTiempo"></div>
+                </h6>
+                <h5 id="LugarTiempo"><ion-icon name="pin-outline"></ion-icon> Irun , Guipuzkoa</h5>
+                <h5><ion-icon name="calendar-outline" id="iconofecha"></ion-icon><span id="FechaTiempo"></span></h5>
+            </div>
+            <div class="cuadrado2">
+                <!-- Arreglar y hacer grafica tamaño en pequeño-->
+                <div class="Graficas">
+                    <div class="cuadradografica">
+                        <canvas id="grafica1" width="20%" height="17%"></canvas>
+                    </div>
+                    <div class="cuadradografica">
+                        <canvas id="grafica2" width="20%" height="17%"></canvas>
+                    </div>
+                    <div class="cuadradografica">
+                        <canvas id="grafica3" width="20%" height="17%"></canvas>
+                    </div>
+                </div>
+                <div class="otroSensores">
+                    <div id="sensormar"></div>
+                    <div id="sensor2">
+                        <h2>Hoy hace un año</h2>
+                        <h5>20ºC</h5>
+                    </div>
+                </div>
+            </div>
+            <div class="cuadrado3">
+                <div class="PrediccionTiempo">
+                    <h5><ion-icon name="calendar-outline" id="FechaPrediccion"></ion-icon>Prediccion a 4 Dias</h5>
+                    <h6>
+                        <div class="lineaTiempo"></div>
+                    </h6>
+                    <div class="cuadradoPreccion7dias">
+                        <img src="/img/sol.png" alt="">
+                    </div>
+                    <div class="cuadradoPreccion7dias">
+                        <img src="/img/Bruma.png" alt="">
+                    </div>
+                    <div class="cuadradoPreccion7dias">
+                        <img src="/img/Bruma.png" alt="">
+                    </div>
+                    <div class="cuadradoPreccion7dias">
+                        <img src="/img/Luna.png" alt="">
+                    </div>
+                </div>
+
+            </div>
+            <div class="cuadrado4">
+                <div class="dragDrop">
+                    <div class="textoDrag">
+                        <h5 class="ArrastrarGuardar">ARRASTRA PARA GUARDAR</h5>
+                        <div class="iconosArrastrar" id="destinoInicio">
+                            <img src="/img/nube.png" alt="" id="porcentajeLluvia">
+                            <img src="/img/Bruma.png" alt="" id="porcentajeBruma">
+                            <img src="/img/Brisa.png" alt="" id="porcentajeBrisa">
+                        </div>
+                    </div>
+                    <div class="textoDragArrastrado" id="destino">
+
+                    </div>
+                </div>
+                <div id="mapid"></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Mis js -->
+    <script src="/js/mapa.js"></script>
+    <script src="/js/script.js"></script>
+    <script src="/js/graficas.js"></script>
+    <script src="js/login.js"></script>
+    <script>
+        window.addEventListener('load', e => {
+            if (sessionStorage.getItem('token') == null) window.location = 'index.html'
+        })
+    </script>
+    <!-- Librerias iconos -->
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</body>
+
+</html>

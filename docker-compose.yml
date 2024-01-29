@@ -1,0 +1,76 @@
+version: '3'
+#maquinas:
+services:
+
+  apacheMaquina1:
+    image: httpd
+    restart: always
+    container_name: apacheMaquina1
+    #El puerto que le asigno
+    ports:
+      - "8081:80"
+    volumes:
+      - ./Sky-Snap-master:/usr/local/apache2/htdocs/
+
+ 
+  #maquina de nginx
+  nginx:
+    image: nginx
+    restart: always
+    container_name: nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+    - apacheMaquina1
+
+  #MySQL
+  db:
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'db' 
+      MYSQL_USER: 'david'
+      MYSQL_PASSWORD: '12345678'
+      MYSQL_ROOT_PASSWORD: '12345678'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - ./Database:/var/lib/mysql
+  
+  #Primer laravel Visualiza los datos Y hace Login/register
+  laravelpassport:
+    image: markosmartinez/laravelpassport-php8.2
+    restart: always
+    container_name: LaravelPassport
+    volumes:
+      - ./LaravelLogin/:/var/www/html/
+    ports:
+      - "8090:8000"
+    depends_on:
+      - db
+
+  #Recogedatos de https://openweathermap.org
+  RecolectorDatos:
+    image: markosmartinez/laravelpassport-php8.2
+    restart: always
+    container_name: RecolectorDatos
+    volumes:
+      - ./RecolectorDatos/:/var/www/html/
+    environment:
+      USAR_WORKER: 1
+    ports:
+      - "8092:8000"
+    depends_on:
+      - db
+    #PhpMyAdmin
+  phpmyadmin:
+    image: 'phpmyadmin:latest'
+    restart: always
+    ports:
+      - 8091:80
+    environment:
+      - PMA_ARBITRARY=1

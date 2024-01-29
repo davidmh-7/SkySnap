@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;500;&display=swap');
+.tooltip-button {
+    background: rgba(8, 3, 3, 0.090);
+    border-radius: 15px;
+    width: 170px;
+    height: 30px;
+    color: #263382;
+    transition: margin-top 0.3s ease;
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
+  
+}
+
+/* Texto de mañana */
+#PreccionManana {
+    color: #263382;
+    font-size: 16px;
+    font-weight: 300;
+    margin-top: 2%;
+    font-family: 'Outfit', sans-serif;
+    margin-bottom: 10px;
+}
+
+.tooltip-button:hover {
+    color: #1b2150;
+    transform: translateY(-1.2px);
+    box-shadow: 2px 2px 5px rgb(0, 0, 0, 0.5);
+}
+#iconoAnadir{
+    color: #1b2150;
+    margin-right: 7px;
+}
+
+#prediccionManana{
+    font-size: 15px;
+    color: #1b2150;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+}

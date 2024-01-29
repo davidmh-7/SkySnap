@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="/css/LoginRegister.css">
+    <title>Sky Snap | Inicio de Sesión y Registro</title>
+</head>
+<style>
+    .huechange {
+        filter: hue-rotate(140deg) brightness(100%);
+    }
+    
+</style>
+<body>
+    <div id="LoginInicio">
+        <div class="wrapper">
+            <div class="form-box">
+                <div class="login-container" id="login">
+                    <div class="top">
+                        <span>No tienes cuenta? <a href="#" onclick="inicioRegister()">Regístrate</a></span>
+                        <header>Iniciar Sesión</header>
+                    </div>
+                    <div class="input-box">
+                        <input type="text" class="input-field" placeholder="Correo electrónico" name="email" id="email">
+                        <i class="bx bx-user"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Contraseña" name="password" id="password">
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" id="loginBtn" class="submit" value="Iniciar Sesión" onclick="login()">
+                    </div>
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox" id="login-check" name="remember-me">
+                            <label for="login-check"> Recordarme</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="#">¿Olvidaste tu contraseña?</a></label>
+                        </div>
+                    </div>
+                </div>
+    
+                <div class="register-container" id="register">
+                    <div class="top">
+                        <span>¿Ya tienes una cuenta? <a href="#" onclick="inicioSesion()">Iniciar Sesión</a></span>
+                        <header>Regístrate</header>
+                    </div>
+                    <div class="two-forms">
+                        <div class="input-box">
+                            <input type="text" class="input-field" placeholder="Nombre" name="nombreRegister" id="nombreRegister">
+                            <i class="bx bx-user"></i>
+                        </div>
+                        <div class="input-box">
+                            <input type="text" class="input-field" placeholder="Correo electrónico" name="emailRegister" id="emailRegister">
+                            <i class="bx bx-envelope"></i>
+                        </div>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Contraseña" name="passwordRegister" id="passwordRegister">
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="password" class="input-field" placeholder="Confirmar Contraseña" name="passwordRegister2" id="passwordRegister2">
+                        <i class="bx bx-lock-alt"></i>
+                    </div>
+                    <div class="input-box">
+                        <input type="submit" id="registerBtn" class="submit" value="Regístrate" onclick="register()">
+                    </div>
+                    <div class="two-col">
+                        <div class="one">
+                            <input type="checkbox" id="register-check">
+                            <label for="register-check"> Recordarme</label>
+                        </div>
+                        <div class="two">
+                            <label><a href="#">Términos y condiciones</a></label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script>
+            var a = document.getElementById("loginBtn");
+            var b = document.getElementById("registerBtn");
+            var x = document.getElementById("login");
+            var y = document.getElementById("register");
+    
+            function inicioSesion() {
+                x.style.left = "4px";
+                y.style.right = "-520px";
+                a.classList.add("white-btn");
+                b.classList.remove("white-btn");
+                x.style.opacity = 1;
+                y.style.opacity = 0;
+            }  
+            function inicioRegister() {
+                x.style.left = "-510px";
+                y.style.right = "5px";
+                a.classList.remove("white-btn");
+                b.classList.add("white-btn");
+                x.style.opacity = 0;
+                y.style.opacity = 1;
+            }
+         
+       
+        </script>
+        <script src="js/login.js"></script>
+        <script src="js/euskalmet.js"></script>
+    </div>
+</body>
+
+</html>

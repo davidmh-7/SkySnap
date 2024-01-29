@@ -1,0 +1,515 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla&family=Orienta&family=Yantramanav:wght@100;300;400;500;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100;200;300;500;&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+html,
+body {
+    height: 100%;
+    margin: 0;
+}
+
+main {
+    height: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.CuadradoGrande {
+    background: rgba(161, 154, 154, 0.197);
+    backdrop-filter: blur(8px) saturate(150%) brightness(90%);
+    height: 93%;
+    width: 97%;
+    margin-top: 1.5%;
+    margin-left: 0.5%;
+    border-radius: 25px;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cuadrado1 {
+    background: rgba(8, 3, 3, 0.197);
+    height: 41.5%;
+    width: 26%;
+    margin-left: 5%;
+    border-radius: 25px;
+    margin-top: 3%;
+}
+
+.cuadrado2 {
+    background: rgba(8, 3, 3, 0.197);
+    height: 41.5%;
+    width: 60%;
+    margin-left: 5%;
+    border-radius: 25px;
+    margin-top: 3%;
+}
+
+.cuadrado3 {
+    background: rgba(8, 3, 3, 0.197);
+    height: 41.5%;
+    width: 26%;
+    margin-left: 5%;
+    border-radius: 25px;
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.cuadrado4 {
+    background: rgba(8, 3, 3, 0.197);
+    height: 41.5%;
+    width: 60%;
+    margin-left: 5%;
+    border-radius: 25px;
+    margin-top: 3%;
+    display: flex;
+    justify-content: center;
+}
+
+.cuadrado1 img {
+    margin-left: 11%;
+    margin-top: 9%;
+}
+
+/* Cuadrado 1 objetos */
+#Temperatura {
+    color: white;
+    font-size: 2.5em;
+    margin-left: 12%;
+    margin-top: 2%;
+    text-shadow: 0 0 3px rgb(3, 3, 3);
+}
+.huechange {
+    filter: hue-rotate(140deg) brightness(100%);
+}
+
+#AccionTiempo {
+    color: white;
+    font-size: 25px;
+    margin-left: 12%;
+    margin-top: 3.5%;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 3px rgb(3, 3, 3);
+}
+
+.lineaTiempo {
+    display: flex;
+    width: 80%;
+    height: 1px;
+    margin-top: 5%;
+    background-color: white;
+
+}
+
+h6 {
+    display: flex;
+    justify-content: center;
+}
+
+#LugarTiempo {
+    color: white;
+    font-size: 15px;
+    margin-left: 12%;
+    margin-top: 3.5%;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 4px rgb(3, 3, 3);
+}
+
+#FechaTiempo {
+    color: white;
+    font-size: 14px;
+    margin-top: 3.5%;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 4px rgb(3, 3, 3);
+}
+
+#iconofecha {
+    color: white;
+    font-size: 14px;
+    margin-left: 12%;
+    margin-right: 1%;
+    margin-top: 3.5%;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 4px rgb(3, 3, 3);
+}
+
+#mapid {
+    margin-top: 2%;
+    height: 90%;
+    width: 50%;
+    border-radius: 15px;
+}
+
+.dragDrop {
+    background: rgba(8, 3, 3, 0.090);
+    height: 90%;
+    width: 35%;
+    margin-top: 2%;
+    border-radius: 15px;
+    margin-right: 5%;
+}
+
+.textoDrag {
+    background: rgba(45, 43, 43, 0.097);
+    height: 19%;
+    width: 80%;
+    margin-top: 5%;
+    border-radius: 15px;
+    margin-left: 10%;
+}
+
+.textoDragArrastrado {
+    background: rgba(45, 43, 43, 0.097);
+    height: 65%;
+    width: 80%;
+    margin-top: 5%;
+    border-radius: 15px;
+    margin-left: 10%;
+    display: inline-block;
+    justify-content: baseline;
+
+}
+
+.ArrastrarGuardar {
+    float: right;
+    font-size: 10px;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 3px rgb(3, 3, 3);
+    color: white;
+    margin-top: 2%;
+    margin-right: 5%;
+}
+
+.iconosArrastrar {
+    width: 100%;
+    height: 100%;
+    display: inline-block;
+}
+
+.iconosArrastrar img {
+    width: 25px;
+    height: 25px;
+    margin-left: 5%;
+    margin-top: 2%;
+    display: inline-block;
+}
+
+.cuadradografica {
+    width: 30%;
+    height: 50%;
+    background: rgba(8, 3, 3, 0.090);
+    border-radius: 15px;
+    margin-top: 2%;
+    display: flex;
+    justify-content: center;
+}
+
+.Graficas {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+}
+
+.otroSensores {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+    height: 19.5%;
+    margin-top: 1.7%;
+}
+
+#sensormar {
+    width: 47.5%;
+    height: 98%;
+    background: rgba(8, 3, 3, 0.090);
+    border-radius: 15px;
+}
+
+#sensor2 {
+    width: 47.5%;
+    height: 98%;
+    border-radius: 15px;
+    background: rgba(8, 3, 3, 0.090);
+}
+
+#sensor2 h2 {
+    color: white;
+    font-size: 15px;
+    margin-left: 3.2%;
+    margin-top: 2.5%;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 4px rgb(3, 3, 3);
+}
+
+#sensor2 h5 {
+    color: white;
+    font-size: 15px;
+    margin-left: 3.2%;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 4px rgb(3, 3, 3);
+}
+
+/* Cuadrado 3 fondo prediccion */
+.PrediccionTiempo {
+    width: 90%;
+    height: 90%;
+    background: rgba(8, 3, 3, 0.090);
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+}
+
+.cuadrado3 h5 {
+    color: white;
+    font-size: 15px;
+    margin-left: 12%;
+    margin-top: 4%;
+    font-weight: 300;
+    margin-bottom: -10px;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 4px rgb(3, 3, 3);
+}
+
+.cuadradoPreccion7dias {
+    width: 85%;
+    height: 18%;
+    background: rgba(8, 3, 3, 0.090);
+    border-radius: 15px;
+    margin-top: 2%;
+    margin-left: 7%;
+}
+.cuadradoPreccion7dias img{
+    width: 35px;
+    height: 35px;
+    margin-left: 6%;
+    margin-top: 3.5%; 
+}
+#FechaPrediccion{
+ margin-right: 2%;
+}
+.textoDragArrastrado img{
+    width: 35px;
+    height: 35px;
+}
+#DragTexto{
+    color: white;
+    font-size: 14px;
+    font-weight: 300;
+    font-family: 'Outfit', sans-serif;
+    text-shadow: 0 0 4px rgb(3, 3, 3);
+    margin-left: 10%;
+    margin-top: 6%;
+}
+
+
+
+/* Media query */
+@media (min-width: 1921px) {
+    .cuadrado1 {
+        width: 25%;
+    }
+
+    .cuadrado2 {
+        width: 60%;
+    }
+
+    .cuadrado3 {
+        width: 25%;
+    }
+
+    .cuadrado4 {
+        width: 60%;
+    }
+
+    .cuadrado1 img {
+        margin-left: 12%;
+        margin-top: 15%;
+        width: 120px;
+        height: 100px;
+    }
+
+    #Temperatura {
+        font-size: 2.5em;
+        margin-left: 12%;
+        margin-top: 5%;
+    }
+
+    #AccionTiempo {
+        font-size: 35px;
+        margin-top: 3.5%;
+    }
+
+    #LugarTiempo {
+        font-size: 18px;
+        margin-top: 4.5%;
+    }
+
+    #FechaTiempo {
+        font-size: 18px;
+        margin-top: 3.5%;
+    }
+}
+
+
+@media (width <=1025px) {
+
+
+    .cuadrado1 img {
+        margin-left: 12%;
+        margin-top: 15%;
+        width: 120px;
+        height: 100px;
+    }
+
+    #Temperatura {
+        font-size: 1.5em;
+        margin-left: 12%;
+        margin-top: 5%;
+    }
+
+    #AccionTiempo {
+        font-size: 35px;
+        margin-top: 3.5%;
+    }
+
+    #LugarTiempo {
+        font-size: 18px;
+        margin-top: 4.5%;
+    }
+
+    #FechaTiempo {
+        font-size: 18px;
+        margin-top: 3.5%;
+    }
+
+    .Graficas {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+        flex-grow: inherit;
+    }
+}
+
+@media (width <=450px) {
+
+    .cuadradografica {
+        width: 90%;
+        height: 25%;
+        background: rgba(8, 3, 3, 0.090);
+        border-radius: 15px;
+        margin-left: 5%;
+        margin-top: 5%;
+        display: flex;
+        justify-content: center;
+    }
+
+    .Graficas {
+        display: flex;
+        justify-content: space-around;
+        flex-direction: column;
+    }
+
+    .cuadrado1 {
+        width: 90%;
+        height: 12%;
+    }
+
+    .cuadrado2 {
+        width: 90%;
+        height: 32%;
+    }
+
+    .cuadrado3 {
+        width: 90%;
+        height: 12%;
+    }
+
+    .cuadrado4 {
+        width: 90%;
+        display: flex;
+        flex-direction: column-reverse;
+
+    }
+
+    .CuadradoGrande {
+        height: 1000px;
+    }
+
+    /* Cuadrado 1 echo */
+    .cuadrado1 img {
+        width: 70px;
+        height: 60px;
+        margin-top: 10%;
+    }
+
+    #Temperatura {
+        font-size: 1.5em;
+        margin-left: 12%;
+        margin-top: 5%;
+    }
+
+    #AccionTiempo {
+        font-size: 20px;
+        margin-top: 3.5%;
+    }
+
+    #LugarTiempo {
+        font-size: 14px;
+        margin-top: 4.5%;
+    }
+
+    #FechaTiempo {
+        font-size: 14px;
+        margin-top: 3.5%;
+    }
+
+    #grafica1,
+    #grafica2,
+    #grafica3 {
+        width: 70% !important;
+        height: 80% !important;
+        margin-top: 1%
+    }
+
+    .otroSensores {
+        margin-top: 10%;
+    }
+
+    .CuadradoGrande {
+        height: 2500px;
+    }
+
+    #mapid {
+        height: 35%;
+        width: 90%;
+        margin-left: 5%;
+        margin-bottom: 15%;
+    }
+
+    .dragDrop {
+        background: rgba(8, 3, 3, 0.090);
+        height: 55%;
+        width: 90%;
+        margin-top: 2%;
+        border-radius: 15px;
+        margin-left: 5%;
+    }
+
+    .iconosArrastrar img {
+        margin-top: 11%;
+        width: 30px;
+        height: 30px;
+        margin-left: 12%;
+        display: inline-block;
+    }
+
+}
