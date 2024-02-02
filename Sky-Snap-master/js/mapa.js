@@ -33,7 +33,7 @@ function actualizarListaCiudades(nombre) {
     const favoritos = document.getElementById('favoritos');
     let stringListaCiudad = '';
     ciudadesFavoritas.forEach(x => {
-        stringListaCiudad += `<li><a href="#" id="${x}" onclick="euskalmet('${x}')"><ion-icon name="business-outline"></ion-icon><span>${x}</span></a></li>`;
+        stringListaCiudad += `<li><a href="#" id="${x}" onclick="cambiarCiudad('${x}')"><ion-icon name="business-outline"></ion-icon><span>${x}</span></a></li>`;
         console.log(stringListaCiudad)
     });
     favoritos.innerHTML = stringListaCiudad;
@@ -88,11 +88,27 @@ $("#destino, #destinoInicio").on('drop', function (event) {
 
 // Carga del dia siguiente del mapa
 
-function euskalmet(x) {
-    let ciudadesMapa = x
-    console.log(ciudadesMapa);
+function cambiarCiudad(x) {
+    x = x.toLowerCase();
 
+    fetch(`http://localhost:8090/api/getTiempoDato?ciudad=${x}`)
+    .then(response => response.json())
+    .then(data => {
+        const ciudadSeleccionada = data.find(ciudad => ciudad.ciudad.toLowerCase() === x);
+        
+        if (ciudadSeleccionada) {
+            document.getElementById("Temperatura").innerText = ciudadSeleccionada.temperatura_real;
+            document.getElementById("LugarTiempo").innerText = ciudadSeleccionada.ciudad;
+        } else {
+            console.error("No se encontraron datos para la ciudad seleccionada");
+        }
+    })
+    .catch(error => {
+        console.error("Error al cargar el archivo:", error);
+    });
 }
+
+
 
 function LeeElemento(ciudad) {
     console.log(ciudad);
