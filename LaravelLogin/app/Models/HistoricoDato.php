@@ -8,9 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class HistoricoDato extends Model
 {
     use HasFactory;
-
-    use HasFactory;
-
+    
     protected $table = 'historico_datos';
 
     protected $fillable = [

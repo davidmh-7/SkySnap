@@ -5,13 +5,11 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class HistoricoDato extends Model
+class TiempoDato extends Model
 {
     use HasFactory;
 
-    use HasFactory;
-
-    protected $table = 'historico_datos';
+    protected $table = 'tiempo_datos';
 
     protected $fillable = [
         'ciudad',
@@ -20,8 +18,9 @@ class HistoricoDato extends Model
         'precipitacion',
         'viento',
         'temperatura_real',
+        'temperatura_fake',
         'descripcion',
-        'fecha'
+        'sensacion_termica'
     ];
 
     public $timestamps = false;

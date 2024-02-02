@@ -1,4 +1,5 @@
-const laravelApi = "http://localhost:8090"
+var urlActual = (new URL(window.location.origin)).hostname;
+const laravelApi = "http://"+urlActual+":8090";
 async function login() {
 
     try {

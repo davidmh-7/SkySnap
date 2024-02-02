@@ -8,40 +8,73 @@ use Illuminate\Support\Facades\Http;
 
 class TiempoDatoController extends Controller
 {
-    public function obtenerTiempo(Request $request)
+    public function traer_datos()
     {
-        // Obtener la latitud y longitud del request
-        $latitud = $request->input('latitud');
-        $longitud = $request->input('longitud');
-
-        // Hacer la solicitud a la API de OpenWeatherMap
-        $response = Http::get('https://api.openweathermap.org/data/2.5/onecall?lat=43.337016&lon=-1.788918&exclude=hourly,daily&appid=bd5e378503939ddaee76f12ad7a97608&units=metric', [
-            'lat' => $latitud,
-            'lon' => $longitud,
-            'exclude' => 'hourly,daily',
-            'appid' => 'bd5e378503939ddaee76f12ad7a97608',
-            'units' => 'metric'
-        ]);
-
-       
-        if ($response->successful()) {
-            $datos = $response->json();
-     
-            TiempoDato::create([
-                'ciudad' => $request->input('ciudad'),
-                'latitud' => $latitud,
-                'longitud' => $longitud,
-                'precipitacion' => $datos['current']['rain'] ?? 0, 
-                'viento' => $datos['current']['wind_speed'] ?? 0, 
-                'temperatura_real' => $datos['current']['temp'],
-                'temperatura_fake' => $datos['current']['feels_like'],
-                'descripcion' => $datos['current']['weather'][0]['description'],
-                'sensacion_termica' => $datos['current']['feels_like']
-            ]);
-
-            return response()->json(['message' => 'Datos del tiempo almacenados correctamente'], 200);
-        } else {
-            return response()->json(['message' => 'Error al obtener los datos del tiempo'], $response->status());
+        try {
+            
+            $ciudades = TiempoDato::all();
+    
+            foreach ($ciudades as $ciudad) {
+                
+                $apiCall = "https://api.openweathermap.org/data/2.5/onecall?lang=es&lat=" . $ciudad->latitud . "&lon=" . $ciudad->longitud . "&exclude=hourly,daily&appid=bd5e378503939ddaee76f12ad7a97608&units=metric";
+                $response = json_decode(@file_get_contents($apiCall), true);
+    
+                // Verificar si la llamada a la API fue exitosa y si contiene datos de precipitación
+                if ($response && isset($response["minutely"]) && isset($response["minutely"][0]["precipitation"])) {
+                    $ciudad->update([
+                        "precipitacion" => $response["minutely"][0]["precipitation"],
+                    ]);
+                }
+    
+                if ($response && isset($response["current"])) {
+                    $ciudad->update([
+                        "temperatura_real" => $response["current"]["temp"],
+                        "descripcion" => $response["current"]["weather"][0]["description"],
+                        "sensacion_termica" => $response["current"]["feels_like"],
+                        "viento" => $response["current"]["wind_speed"] ?? null,
+                    ]);
+                } else {
+                    \Log::error('No se pudo obtener una respuesta válida de la API para la ciudad: ' . $ciudad->ciudad);
+                }
+            }
+        } catch (\Exception $e) {
+            \Log::error('Error al actualizar datos: ' . $e->getMessage());
         }
     }
+    
+
+    public function datosFake()
+    {
+        try {
+            // Obtener todos los registros de la tabla tiempo_datos
+            $ciudades = TiempoDato::all();
+    
+            foreach ($ciudades as $ciudad) {
+                // Realizar la llamada a la API para obtener los datos actualizados
+                $apiCall = "https://api.openweathermap.org/data/2.5/onecall?lang=es&lat=" . $ciudad->latitud . "&lon=" . $ciudad->longitud . "&exclude=hourly,daily&appid=bd5e378503939ddaee76f12ad7a97608&units=metric";
+                $response = json_decode(@file_get_contents($apiCall), true);
+    
+                if ($response && isset($response["current"])) {
+                    $temperatura_real = $response["current"]["temp"];
+    
+                    $temperatura_falsa = $temperatura_real + (rand(-2, 2) / 10);
+    
+                    if ($temperatura_falsa < ($temperatura_real - 1) || $temperatura_falsa > ($temperatura_real + 1)) {
+                        $temperatura_falsa = $temperatura_real;
+                    }
+
+                    $ciudad->update([
+                        "temperatura_fake" => $temperatura_falsa,
+                    ]);
+                } else {
+                    \Log::error('No funcionan los datos fake');
+                }
+            }
+        } catch (\Exception $e) {
+            \Log::error('Error al actualizar datos: ' . $e->getMessage());
+        }
+    }
+    
+
+
 }

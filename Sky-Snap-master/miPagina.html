@@ -118,7 +118,13 @@
                     </div>
                 </div>
                 <div class="otroSensores">
-                    <div id="sensormar"></div>
+                    <div id="sensormar">
+                        <div class="temperaturaTiemporeal"><ion-icon name="thermometer-outline"></ion-icon> Temperatura en Directo:</div>
+                        <div id="TemperaturaFake">
+                             18.78 ºC
+                        </div>
+                        
+                    </div>
                     <div id="sensor2">
                         <h2>Hoy hace un año</h2>
                         <h5>20ºC</h5>
@@ -127,21 +133,29 @@
             </div>
             <div class="cuadrado3">
                 <div class="PrediccionTiempo">
-                    <h5><ion-icon name="calendar-outline" id="FechaPrediccion"></ion-icon>Prediccion a 4 Dias</h5>
+                    <h5><ion-icon name="calendar-outline" id="FechaPrediccion"></ion-icon>Tiempo a 4 Dias</h5>
                     <h6>
                         <div class="lineaTiempo"></div>
                     </h6>
                     <div class="cuadradoPreccion7dias">
                         <img src="/img/sol.png" alt="">
+                        <div id="temperaturaManana">Jueves</div>
+                        <div id="temperatura1prediccion">12 Cº</div>
                     </div>
                     <div class="cuadradoPreccion7dias">
                         <img src="/img/Bruma.png" alt="">
+                        <div id="temperaturaManana">Viernes</div>
+                        <div id="temperatura1prediccion">12 Cº</div>
                     </div>
                     <div class="cuadradoPreccion7dias">
                         <img src="/img/Bruma.png" alt="">
+                        <div id="temperaturaManana">Sabado</div>
+                        <div id="temperatura1prediccion">12 Cº</div>
                     </div>
                     <div class="cuadradoPreccion7dias">
                         <img src="/img/Luna.png" alt="">
+                        <div id="temperaturaManana">Domingo</div>
+                        <div id="temperatura1prediccion">12 Cº</div>
                     </div>
                 </div>
 
@@ -175,6 +189,7 @@
             if (sessionStorage.getItem('token') == null) window.location = 'index.html'
         })
     </script>
+    
     <!-- Librerias iconos -->
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
