@@ -26,12 +26,12 @@ lugares.forEach(lugar => {
 });
 let contador = 0;
 function Lugar(nombre) {
-    if (ciudadesFavoritas.size < 2) {
+    if (ciudadesFavoritas.size < 3) {
         const favoritos = document.getElementById('favoritos');
         ciudadesFavoritas.add(nombre);
         actualizarListaCiudades(nombre);
     } else {
-        alert("Solo puedes guardar dos ciudades favoritas.");
+        alert("Solo puedes guardar 3 ciudades favoritas.");
     }
 }
 function actualizarListaCiudades(nombre) {

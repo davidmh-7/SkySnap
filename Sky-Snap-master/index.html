@@ -74,9 +74,11 @@
                             name="passwordRegister2" id="passwordRegister2">
                         <i class="bx bx-lock-alt"></i>
                     </div>
-                    <div class="input-box">
+                    <div class="input-box" id="registroConCargando" style="position: relative;">
                         <input type="submit" id="registerBtn" class="submit" value="Regístrate" onclick="register()">
+                        <img src="img/cargando.gif" alt="Cargando..." id="cargandoIcono" style="width: 20px; height: 20px; position: absolute; top: 50%; right: -30px; transform: translateY(-50%); display: none;">
                     </div>
+                    
                     <div class="two-col">
                         <div class="one">
                             <input type="checkbox" id="register-check">
@@ -135,6 +137,7 @@
                     loginEnsenarContra.type = 'password';
                 }
             });
+            
         </script>
         <script src="js/login.js"></script>
     </div>

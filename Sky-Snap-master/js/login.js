@@ -1,11 +1,11 @@
 var urlActual = (new URL(window.location.origin)).hostname;
-const laravelApi = "http://"+urlActual+":8090";
+const laravelApiii = "http://"+urlActual+":8090";
 async function login() {
 
     try {
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
-        let respuesta = await fetch(laravelApi + "/api/login", {
+        let respuesta = await fetch(laravelApiii + "/api/login", {
             method: "POST",
             body: JSON.stringify({
                 email: email,
@@ -40,7 +40,7 @@ async function register() {
     if (passwordRegister.length == passwordRegister2.length){
         console.log('hola')
         try {
-            let respuesta = await fetch(laravelApi + "/api/register", {
+            let respuesta = await fetch(laravelApiii + "/api/register", {
                 method: "POST",
                 body: JSON.stringify({
                     name: nombreRegister,
@@ -75,7 +75,7 @@ async function register() {
 async function logout() {
     
     try {
-        let respuesta = await fetch(laravelApi + "/api/logout", {
+        let respuesta = await fetch(laravelApiii + "/api/logout", {
            
             headers: {
                 "Content-type": "application/json; charset=UTF-8",
