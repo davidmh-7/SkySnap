@@ -58,3 +58,27 @@ function precargaIMG() {
         images.push(img);
     }
 }
+function diaSemana() {
+    var fechaActual = new Date();
+
+    fechaActual.setDate(fechaActual.getDate() + 1);
+    var diaManana = fechaActual.getDay();
+
+    fechaActual.setDate(fechaActual.getDate() + 1);
+    var diaPasadoManana = fechaActual.getDay();
+
+    fechaActual.setDate(fechaActual.getDate() + 1);
+    var diaEnTresDias = fechaActual.getDay();
+
+    var dias = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
+
+    var nombreDiaManana = dias[diaManana];
+    var nombreDiaPasadoManana = dias[diaPasadoManana];
+    var nombreDiaEnTresDias = dias[diaEnTresDias];
+
+    document.getElementById('temperaturaManana2').innerHTML = nombreDiaManana;
+    document.getElementById('temperaturaManana3').innerHTML = nombreDiaPasadoManana;
+    document.getElementById('temperaturaManana4').innerHTML = nombreDiaEnTresDias;
+    setInterval(diaSemana, 300000);
+}
+diaSemana();

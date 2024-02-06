@@ -1,3 +1,7 @@
+// Sirve para poderse ver entre otros ordenadores
+var urlActual = (new URL(window.location.origin)).hostname;
+const laravelApi = "http://"+urlActual+":8090";
+// Recoge la fecha actual y la de mañana para la api de euskalmet
 const ciudadesFavoritas = new Set();
 var fecha = new Date();
 var hoy = fecha.getFullYear() + '/' + (fecha.getMonth() + 1).toString().padStart(2, '0') + '/' + fecha.getDate().toString().padStart(2, '0');
@@ -6,6 +10,7 @@ var fechamañana = new Date();
 fechamañana.setDate(fecha.getDate() + 1);
 var hoy1 = fechamañana.getFullYear() + (fechamañana.getMonth() + 1).toString().padStart(2, '0') + fechamañana.getDate().toString().padStart(2, '0');
 
+// Mapa
 var lugares = [{ "nombre": "Irun", "latitud": 43.3390, "longitud": -1.7896 }, { "nombre": "Donosti", "latitud": 43.3183, "longitud": -1.9812 }, { "nombre": "Bilbao", "latitud": 43.261992, "longitud": -2.935590 }, { "nombre": "Renteria", "latitud": 43.3119, "longitud": -1.8985 }, { "nombre": "Zarautz", "latitud": 43.284224, "longitud": -2.168719 }];
 var map = L.map('mapid').setView([43.338, -1.788], 11);
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
@@ -60,6 +65,7 @@ function eliminarCiudades() {
     actualizarListaCiudades();
 }
 
+// Drag and drop
 $("#porcentajeLluvia,#porcentajeBruma,#porcentajeBrisa").on("dragstart", function (event) {
     event.originalEvent.dataTransfer.setData("text/plain", event.target.id);
 })
@@ -85,31 +91,75 @@ $("#destino, #destinoInicio").on('drop', function (event) {
     }
 });
 
+// Array de las img
+var ArrayImg = ["broken clouds", "scattered clouds", "cloud", "clouds", "overcast clouds", "clear sky", "few clouds", "shower rain", "light rain", "moderate rain", "heavy intensity rain", "very heavy rain", "extreme rain", "freezing rain", "light intensity shower rain", "shower rain", "heavy intensity shower rain", "ragged shower rain", "rain", "thunderstorm", "snow", "mist", "smoke", "haze", "dust", "fog", "sand", "dust", "ash", "squall", "tornado", "Clear", "scattered clouds", "clear sky"];
 
 // Carga del dia siguiente del mapa
-
 function cambiarCiudad(x) {
     x = x.toLowerCase();
 
-    fetch(`http://localhost:8090/api/getTiempoDato?ciudad=${x}`)
+    fetch(laravelApi + `/api/getTiempoDato?ciudad=${x}`)
     .then(response => response.json())
     .then(data => {
         const ciudadSeleccionada = data.find(ciudad => ciudad.ciudad.toLowerCase() === x);
         
         if (ciudadSeleccionada) {
-            document.getElementById("Temperatura").innerText = ciudadSeleccionada.temperatura_real;
-            document.getElementById("LugarTiempo").innerText = ciudadSeleccionada.ciudad;
-        } else {
-            console.error("No se encontraron datos para la ciudad seleccionada");
+            document.getElementById("Temperatura").innerText = Math.floor(ciudadSeleccionada.temperatura_real)+"  ºC";
+            document.getElementById("temperatura1prediccion").innerText = ciudadSeleccionada.temperatura_real+"  ºC";
+            document.getElementById("AccionTiempo").innerText = ciudadSeleccionada.descripcion.charAt(0).toUpperCase() + ciudadSeleccionada.descripcion.slice(1);
+            document.getElementById("LugarTiempo").innerHTML = `<ion-icon name="pin-outline"></ion-icon> ${ciudadSeleccionada.ciudad.charAt(0).toUpperCase() + ciudadSeleccionada.ciudad.slice(1)}, Gipuzkoa`;
+            document.getElementById("TemperaturaFake").innerText = ciudadSeleccionada.temperatura_fake+"  ºC";
         }
     })
     .catch(error => {
         console.error("Error al cargar el archivo:", error);
     });
+    datosEntiempoReal(x);
+    
+    const lugarSeleccionado = lugares.find(lugar => lugar.nombre.toLowerCase() === x);
+    if (lugarSeleccionado) {
+        const latitud = lugarSeleccionado.latitud;
+        const longitud = lugarSeleccionado.longitud;
+        console.log(latitud, longitud);
+    
+        fetch(`https://openweathermap.org/data/2.5/onecall?lat=${latitud}&lon=${longitud}&units=metric&appid=439d4b804bc8187953eb36d2a8c26a02`)
+            .then(response => response.json())
+            .then(data => {
+                console.log(data);
+                document.getElementById("temperatura2prediccion").innerText = data.daily[0].temp.day+"  ºC";
+                document.getElementById("temperatura3prediccion").innerText = data.daily[1].temp.day+"  ºC";
+                document.getElementById("temperatura4prediccion").innerText = data.daily[2].temp.day+"  ºC";                
+            })
+            .catch(error => {
+                console.error("Error al cargar el archivo:", error);
+            });
+    } else {
+        console.error("No se encontró la información de longitud y latitud para la ciudad seleccionada");
+    } 
+    
+}
+
+function datosEntiempoReal(x) {
+    x = x.toLowerCase();
+    setInterval(() => {
+        fetch(laravelApi + `/api/getTiempoDato?ciudad=${x}`)
+        .then(response => response.json())
+        .then(data => {
+            const ciudadSeleccionada = data.find(ciudad => ciudad.ciudad.toLowerCase() === x);
+            
+            if (ciudadSeleccionada) {
+                document.getElementById("TemperaturaFake").innerText = ciudadSeleccionada.temperatura_fake+"  ºC";
+            }
+        })
+        .catch(error => {
+            console.error("Error al cargar el archivo:", error);
+        });
+    }, 10000);
+       
 }
 
 
-
+// Euskalmet
 function LeeElemento(ciudad) {
     console.log(ciudad);
 
@@ -180,7 +230,6 @@ function LeeElemento(ciudad) {
             console.log('Ciudad no reconocida');
     }
 }
-
 
 
 // https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/irun/forecast/at/${hoy}/for/${hoy1}

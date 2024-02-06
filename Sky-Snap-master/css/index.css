@@ -25,6 +25,7 @@ main {
     border-radius: 25px;
     display: flex;
     flex-wrap: wrap;
+    
 }
 
 .cuadrado1 {
@@ -318,7 +319,7 @@ h6 {
     float: left; /* Hace que la imagen flote a la izquierda */
 }
 
-#temperaturaManana{
+#temperaturaManana1, #temperaturaManana2, #temperaturaManana3, #temperaturaManana4 {
     color: white;
     font-size: 18px;
     margin-left: 21%;
@@ -327,11 +328,11 @@ h6 {
     text-shadow: 0 0 4px rgb(3, 3, 3);
     display: inline-block;
     font-family: 'Outfit', sans-serif;
-    margin-right: 20%;
+    margin-right: 17%;
     width: 17%;
 }
 
-#temperatura1prediccion{
+#temperatura1prediccion, #temperatura2prediccion, #temperatura3prediccion, #temperatura4prediccion {
     color: white;
     font-size: 18px;
     margin-top: 6%;
@@ -340,6 +341,7 @@ h6 {
     display: inline-block;
     font-family: 'Outfit', sans-serif;
 }
+
 
 #FechaPrediccion{
  margin-right: 2%;
@@ -357,8 +359,6 @@ h6 {
     margin-left: 10%;
     margin-top: 6%;
 }
-
-
 
 /* Media query */
 @media (min-width: 1921px) {

@@ -14,7 +14,6 @@
     .huechange {
         filter: hue-rotate(140deg) brightness(100%);
     }
-    
 </style>
 <body>
     <div id="LoginInicio">
@@ -30,7 +29,8 @@
                         <i class="bx bx-user"></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" class="input-field" placeholder="Contraseña" name="password" id="password">
+                        <input type="password" class="input-field" placeholder="Contraseña" name="password"
+                            id="password">
                         <i class="bx bx-lock-alt"></i>
                     </div>
                     <div class="input-box">
@@ -39,14 +39,14 @@
                     <div class="two-col">
                         <div class="one">
                             <input type="checkbox" id="login-check" name="remember-me">
-                            <label for="login-check"> Recordarme</label>
+                            <label for="login-check"> Ver Contraseña</label>
                         </div>
                         <div class="two">
                             <label><a href="#">¿Olvidaste tu contraseña?</a></label>
                         </div>
                     </div>
                 </div>
-    
+
                 <div class="register-container" id="register">
                     <div class="top">
                         <span>¿Ya tienes una cuenta? <a href="#" onclick="inicioSesion()">Iniciar Sesión</a></span>
@@ -54,20 +54,24 @@
                     </div>
                     <div class="two-forms">
                         <div class="input-box">
-                            <input type="text" class="input-field" placeholder="Nombre" name="nombreRegister" id="nombreRegister">
+                            <input type="text" class="input-field" placeholder="Nombre" name="nombreRegister"
+                                id="nombreRegister">
                             <i class="bx bx-user"></i>
                         </div>
                         <div class="input-box">
-                            <input type="text" class="input-field" placeholder="Correo electrónico" name="emailRegister" id="emailRegister">
+                            <input type="text" class="input-field" placeholder="Correo electrónico" name="emailRegister"
+                                id="emailRegister">
                             <i class="bx bx-envelope"></i>
                         </div>
                     </div>
                     <div class="input-box">
-                        <input type="password" class="input-field" placeholder="Contraseña" name="passwordRegister" id="passwordRegister">
+                        <input type="password" class="input-field" placeholder="Contraseña" name="passwordRegister"
+                            id="passwordRegister">
                         <i class="bx bx-lock-alt"></i>
                     </div>
                     <div class="input-box">
-                        <input type="password" class="input-field" placeholder="Confirmar Contraseña" name="passwordRegister2" id="passwordRegister2">
+                        <input type="password" class="input-field" placeholder="Confirmar Contraseña"
+                            name="passwordRegister2" id="passwordRegister2">
                         <i class="bx bx-lock-alt"></i>
                     </div>
                     <div class="input-box">
@@ -76,7 +80,7 @@
                     <div class="two-col">
                         <div class="one">
                             <input type="checkbox" id="register-check">
-                            <label for="register-check"> Recordarme</label>
+                            <label for="register-check"> Ver Contraseña</label>
                         </div>
                         <div class="two">
                             <label><a href="#">Términos y condiciones</a></label>
@@ -90,7 +94,7 @@
             var b = document.getElementById("registerBtn");
             var x = document.getElementById("login");
             var y = document.getElementById("register");
-    
+
             function inicioSesion() {
                 x.style.left = "4px";
                 y.style.right = "-520px";
@@ -98,7 +102,7 @@
                 b.classList.remove("white-btn");
                 x.style.opacity = 1;
                 y.style.opacity = 0;
-            }  
+            }
             function inicioRegister() {
                 x.style.left = "-510px";
                 y.style.right = "5px";
@@ -107,12 +111,32 @@
                 x.style.opacity = 0;
                 y.style.opacity = 1;
             }
-         
-       
+            document.getElementById('register-check').addEventListener('change', function () {
+                var enseñarocultar = document.getElementById('passwordRegister');
+                if (this.checked) {
+                    enseñarocultar.type = 'text';
+                } else {
+                    enseñarocultar.type = 'password';
+                }
+                var enseñarocultar2 = document.getElementById('passwordRegister2');
+                if (this.checked) {
+                    enseñarocultar2.type = 'text';
+                } else {
+                    enseñarocultar2.type = 'password';
+                }
+
+
+            });
+            document.getElementById('login-check').addEventListener('change', function () {
+                var loginEnsenarContra = document.getElementById('password');
+                if (this.checked) {
+                    loginEnsenarContra.type = 'text';
+                } else {
+                    loginEnsenarContra.type = 'password';
+                }
+            });
         </script>
         <script src="js/login.js"></script>
-        <script src="js/euskalmet.js"></script>
-
     </div>
 </body>
 

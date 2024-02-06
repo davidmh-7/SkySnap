@@ -18,8 +18,7 @@ class TiempoDatoController extends Controller
                 
                 $apiCall = "https://api.openweathermap.org/data/2.5/onecall?lang=es&lat=" . $ciudad->latitud . "&lon=" . $ciudad->longitud . "&exclude=hourly,daily&appid=bd5e378503939ddaee76f12ad7a97608&units=metric";
                 $response = json_decode(@file_get_contents($apiCall), true);
-    
-                // Verificar si la llamada a la API fue exitosa y si contiene datos de precipitación
+
                 if ($response && isset($response["minutely"]) && isset($response["minutely"][0]["precipitation"])) {
                     $ciudad->update([
                         "precipitacion" => $response["minutely"][0]["precipitation"],
