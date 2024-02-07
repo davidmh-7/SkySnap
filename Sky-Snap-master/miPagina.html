@@ -70,7 +70,7 @@
                 <img src="/img/Nublado.png" alt="">
                 <div class="info-usuario">
                     <div class="nombre-email">
-                        <span class="nombre">Davidmh-7</span>
+                        <span class="nombre" id="nombreUser"></span>
                     </div>
                 </div>
             </div>
@@ -82,12 +82,12 @@
             <div class="cuadrado1">
                 <img src="/img/Nublado.png" alt="" id="ImgCudrado1">
                 <!-- Es provisional Quitar el numero de temperatura!!! -->
-                <h5 id="Temperatura"></h5>
-                <h5 id="AccionTiempo">Soleado</h5>
+                <h5 id="Temperatura">Cargando...</h5>
+                <h5 id="AccionTiempo">Cargando...</h5>
                 <h6>
                     <div class="lineaTiempo"></div>
                 </h6>
-                <h5 id="LugarTiempo"><ion-icon name="pin-outline"></ion-icon> Irun , Guipuzkoa</h5>
+                <h5 id="LugarTiempo"><ion-icon name="pin-outline"></ion-icon>Cargando...</h5>
                 <h5><ion-icon name="calendar-outline" id="iconofecha"></ion-icon><span id="FechaTiempo"></span></h5>
             </div>
             <div class="cuadrado2">
@@ -106,7 +106,7 @@
                     <div id="sensormar">
                         <div class="temperaturaTiemporeal"><ion-icon name="thermometer-outline"></ion-icon> Temperatura
                             en Directo:</div>
-                        <div id="TemperaturaFake"></div>
+                        <div id="TemperaturaFake">Cargando...</div>
                     </div>
                     <div id="sensor2">
                         <h2>Elije un día para ver los gráficos</h2>
@@ -148,9 +148,9 @@
                     <div class="textoDrag">
                         <h5 class="ArrastrarGuardar">ARRASTRA PARA GUARDAR</h5>
                         <div class="iconosArrastrar" id="destinoInicio">
-                            <img src="/img/nube.png" alt="" id="porcentajeLluvia">
-                            <img src="/img/Bruma.png" alt="" id="porcentajeBruma">
-                            <img src="/img/Brisa.png" alt="" id="porcentajeBrisa">
+                            <img src="/img/nube.png" alt="" id="porcentajeLluvia"><p id="porcentajeLluviaP"></p>
+                            <img src="/img/Bruma.png" alt="" id="porcentajeBruma"><p id="porcentajeBrumaP"></p>
+                            <img src="/img/Brisa.png" alt="" id="porcentajeBrisa"><p id="porcentajeBrisaP"></p>
                         </div>
                     </div>
                     <div class="textoDragArrastrado" id="destino">

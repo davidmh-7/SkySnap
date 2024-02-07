@@ -18,7 +18,7 @@ lugares.forEach(lugar => {
     var marker = L.marker([lugar.latitud, lugar.longitud]).addTo(map);
     marker._icon.classList.add("huechange");
     var Popup = document.createElement('div');
-    Popup.innerHTML = `<h5 id="PreccionManana">Mañana</h5><p id="prediccionManana"></p><button class='tooltip-button' onclick='Lugar("${lugar.nombre}")'><ion-icon name="add-circle-outline" id="iconoAnadir"></ion-icon>Guardar en favoritos</button>`;
+    Popup.innerHTML = `<h5 id="PreccionManana">Mañana en ${lugar.nombre}</h5><p id="prediccionManana"></p><button class='tooltip-button' onclick='Lugar("${lugar.nombre}")'><ion-icon name="add-circle-outline" id="iconoAnadir"></ion-icon>Guardar en favoritos</button>`;
     marker.bindPopup(Popup, { permanent: true, direction: 'top', offset: L.point(0, -10) });
     marker.on('click', function () {
         LeeElemento(lugar.nombre.toLowerCase());
@@ -64,7 +64,6 @@ function eliminarCiudades() {
     ciudadesFavoritas.clear();
     actualizarListaCiudades();
 }
-
 // Drag and drop
 $("#porcentajeLluvia,#porcentajeBruma,#porcentajeBrisa").on("dragstart", function (event) {
     event.originalEvent.dataTransfer.setData("text/plain", event.target.id);
@@ -84,12 +83,19 @@ $("#destino, #destinoInicio").on('drop', function (event) {
         var parrafo = document.createElement('p');
         textoDrag.style.display = "inline-block"
         textoDrag.id = 'DragTexto';
-        parrafo.innerHTML = "22KM/H";
+        parrafo.id = "parrafo"
+        // parrafo.innerHTML = "22KM/H";
         textoDrag.appendChild(draggedElement);
         textoDrag.appendChild(parrafo);
         event.target.appendChild(textoDrag);
     }
 });
+
+$("#destinoInicio").on('drop', function (event) {
+    let texto = document.getElementById("DragTexto")
+    let parrafo = document.getElementById("parrafo")
+    parrafo.innerHTML = ''
+})
 
 // Array de las img
 var ArrayImg = ["broken clouds", "scattered clouds", "cloud", "clouds", "overcast clouds", "clear sky", "few clouds", "shower rain", "light rain", "moderate rain", "heavy intensity rain", "very heavy rain", "extreme rain", "freezing rain", "light intensity shower rain", "shower rain", "heavy intensity shower rain", "ragged shower rain", "rain", "thunderstorm", "snow", "mist", "smoke", "haze", "dust", "fog", "sand", "dust", "ash", "squall", "tornado", "Clear", "scattered clouds", "clear sky"];

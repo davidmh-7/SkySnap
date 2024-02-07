@@ -3,6 +3,7 @@ const laravelApiii = "http://"+urlActual+":8090";
 async function login() {
 
     try {
+        
         const email = document.getElementById('email').value;
         const password = document.getElementById('password').value;
         let respuesta = await fetch(laravelApiii + "/api/login", {
@@ -18,13 +19,14 @@ async function login() {
 
         let data = await respuesta.json();
         console.log(data);
-
         if (data["success"]) {
             sessionStorage.setItem("token", data["data"]["token"]);
             cargarMiPagina();
+                        
 
         } else {
             console.error('Error en el inicio de sesión:', data["error"]);
+            alert("la contraseña no coincide");
         }
     } catch (error) {
         console.error(error);
@@ -63,6 +65,7 @@ async function register() {
             } else {
                 // Ha fallado el login
                 console.error('Error al registrarse:', data["error"]);
+                alert("la contraseña no coincide");
             }
         } catch (error) {
             console.error(error);
@@ -101,7 +104,9 @@ function cargarMiPagina() {
 function llevarIndex() {
     window.location.href = "index.html";
     console.log('Eliminado4')
+    alert("Session cerrada")
 }
+
 
 
 
