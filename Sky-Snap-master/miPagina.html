@@ -76,12 +76,11 @@
             </div>
         </div>
     </div>
-
     <main>
         <div class="CuadradoGrande">
+            <!-- Cuadrado 1 -->
             <div class="cuadrado1">
-                <img src="/img/Nublado.png" alt="" id="ImgCudrado1">
-                <!-- Es provisional Quitar el numero de temperatura!!! -->
+                <img src="" alt="Cargando..." id="ImgCudrado1">
                 <h5 id="Temperatura">Cargando...</h5>
                 <h5 id="AccionTiempo">Cargando...</h5>
                 <h6>
@@ -90,6 +89,7 @@
                 <h5 id="LugarTiempo"><ion-icon name="pin-outline"></ion-icon>Cargando...</h5>
                 <h5><ion-icon name="calendar-outline" id="iconofecha"></ion-icon><span id="FechaTiempo"></span></h5>
             </div>
+            <!-- Cuadrado 2 -->
             <div class="cuadrado2">
                 <div class="Graficas">
                     <div class="cuadradografica">
@@ -103,7 +103,7 @@
                     </div>
                 </div>
                 <div class="otroSensores">
-                    <div id="sensormar">
+                    <div id="sensorDatosFake">
                         <div class="temperaturaTiemporeal"><ion-icon name="thermometer-outline"></ion-icon> Temperatura
                             en Directo:</div>
                         <div id="TemperaturaFake">Cargando...</div>
@@ -111,9 +111,9 @@
                     <div id="sensor2">
                         <h2>Elije un día para ver los gráficos</h2>
                     </div>
-                    
                 </div>
             </div>
+            <!-- Cuadrado 3 -->
             <div class="cuadrado3">
                 <div class="PrediccionTiempo">
                     <h5><ion-icon name="calendar-outline" id="FechaPrediccion"></ion-icon>Tiempo a 4 Dias</h5>
@@ -121,7 +121,7 @@
                         <div class="lineaTiempo"></div>
                     </h6>
                     <div class="cuadradoPreccion7dias">
-                        <img src="/img/sol.png" alt="">
+                        <img src="/img/sol.png" alt="" id="prediccionHoyImg">
                         <div id="temperaturaManana1">Hoy</div>
                         <div id="temperatura1prediccion"></div>
                     </div>
@@ -141,16 +141,19 @@
                         <div id="temperatura4prediccion"></div>
                     </div>
                 </div>
-
+                <!-- Cuadrado 4 -->
             </div>
             <div class="cuadrado4">
                 <div class="dragDrop">
                     <div class="textoDrag">
                         <h5 class="ArrastrarGuardar">ARRASTRA PARA GUARDAR</h5>
                         <div class="iconosArrastrar" id="destinoInicio">
-                            <img src="/img/nube.png" alt="" id="porcentajeLluvia"><p id="porcentajeLluviaP"></p>
-                            <img src="/img/Bruma.png" alt="" id="porcentajeBruma"><p id="porcentajeBrumaP"></p>
-                            <img src="/img/Brisa.png" alt="" id="porcentajeBrisa"><p id="porcentajeBrisaP"></p>
+                            <img src="/img/LluviaFuerte.png" alt="" id="porcentajePrecipitacion">
+                            <p id="porcentajeLluviaP"></p>
+                            <img src="/img/Bruma.png" alt="" id="porcentajeSensacionTermica">
+                            <p id="porcentajeBrumaP"></p>
+                            <img src="/img/Brisa.png" alt="" id="porcentajeViento">
+                            <p id="porcentajeBrisaP"></p>
                         </div>
                     </div>
                     <div class="textoDragArrastrado" id="destino">
@@ -167,6 +170,7 @@
     <script src="/js/script.js"></script>
     <script src="/js/graficas.js"></script>
     <script src="/js/login.js"></script>
+    <script src="/js/DragAndDrop.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
         window.addEventListener('load', e => {
@@ -178,4 +182,5 @@
     <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 </body>
+
 </html>

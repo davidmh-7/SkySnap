@@ -103,7 +103,7 @@ function cargarMiPagina() {
 }
 function llevarIndex() {
     window.location.href = "index.html";
-    console.log('Eliminado4')
+    console.log('Session cerrada')
     alert("Session cerrada")
 }
 

@@ -1,7 +1,6 @@
 // Lista de URLs de imágenes a precargar
 var imageUrls = [
     "../img/NuvesFondo.jpg","../img/FondoRegister.jpg"
-    // Agrega más URLs de imágenes si es necesario
 ];
 
 // Función para precargar las imágenes

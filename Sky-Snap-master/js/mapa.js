@@ -1,6 +1,6 @@
 // Sirve para poderse ver entre otros ordenadores
 var urlActual = (new URL(window.location.origin)).hostname;
-const laravelApi = "http://"+urlActual+":8090";
+const laravelApi = "http://" + urlActual + ":8090";
 // Recoge la fecha actual y la de mañana para la api de euskalmet
 const ciudadesFavoritas = new Set();
 var fecha = new Date();
@@ -34,6 +34,7 @@ function Lugar(nombre) {
         alert("Solo puedes guardar 3 ciudades favoritas.");
     }
 }
+// Actializa los datos y los mete en el local storage
 function actualizarListaCiudades(nombre) {
     const favoritos = document.getElementById('favoritos');
     let stringListaCiudad = '';
@@ -64,104 +65,184 @@ function eliminarCiudades() {
     ciudadesFavoritas.clear();
     actualizarListaCiudades();
 }
-// Drag and drop
-$("#porcentajeLluvia,#porcentajeBruma,#porcentajeBrisa").on("dragstart", function (event) {
-    event.originalEvent.dataTransfer.setData("text/plain", event.target.id);
-})
-$("#destino, #destinoInicio").on('dragover', function (event) {
-    event.preventDefault();
-});
-$("#destino, #destinoInicio").on('drop', function (event) {
-    event.preventDefault();
-    var data = event.originalEvent.dataTransfer.getData("text/plain");
-    var draggedElement = document.getElementById(data);
-    if (event.target !== draggedElement) {
-        $(draggedElement).attr('draggable', true)
-
-        console.log(draggedElement)
-        var textoDrag = document.createElement('div');
-        var parrafo = document.createElement('p');
-        textoDrag.style.display = "inline-block"
-        textoDrag.id = 'DragTexto';
-        parrafo.id = "parrafo"
-        // parrafo.innerHTML = "22KM/H";
-        textoDrag.appendChild(draggedElement);
-        textoDrag.appendChild(parrafo);
-        event.target.appendChild(textoDrag);
-    }
-});
-
-$("#destinoInicio").on('drop', function (event) {
-    let texto = document.getElementById("DragTexto")
-    let parrafo = document.getElementById("parrafo")
-    parrafo.innerHTML = ''
-})
 
 // Array de las img
-var ArrayImg = ["broken clouds", "scattered clouds", "cloud", "clouds", "overcast clouds", "clear sky", "few clouds", "shower rain", "light rain", "moderate rain", "heavy intensity rain", "very heavy rain", "extreme rain", "freezing rain", "light intensity shower rain", "shower rain", "heavy intensity shower rain", "ragged shower rain", "rain", "thunderstorm", "snow", "mist", "smoke", "haze", "dust", "fog", "sand", "dust", "ash", "squall", "tornado", "Clear", "scattered clouds", "clear sky"];
+var ArrayImg = ["broken clouds", "Drizzle", "scattered clouds", "cloud", "clouds", "overcast clouds", "clear sky", "few clouds", "shower rain", "light rain", "moderate rain", "heavy intensity rain", "very heavy rain", "extreme rain", "freezing rain", "light intensity shower rain", "shower rain", "heavy intensity shower rain", "ragged shower rain", "rain", "thunderstorm", "snow", "mist", "smoke", "haze", "dust", "fog", "sand", "dust", "ash", "squall", "tornado", "Clear", "scattered clouds", "clear sky"];
 
 // Carga del dia siguiente del mapa
 function cambiarCiudad(x) {
     x = x.toLowerCase();
 
     fetch(laravelApi + `/api/getTiempoDato?ciudad=${x}`)
-    .then(response => response.json())
-    .then(data => {
-        const ciudadSeleccionada = data.find(ciudad => ciudad.ciudad.toLowerCase() === x);
-        
-        if (ciudadSeleccionada) {
-            document.getElementById("Temperatura").innerText = Math.floor(ciudadSeleccionada.temperatura_real)+"  ºC";
-            document.getElementById("temperatura1prediccion").innerText = ciudadSeleccionada.temperatura_real+"  ºC";
-            document.getElementById("AccionTiempo").innerText = ciudadSeleccionada.descripcion.charAt(0).toUpperCase() + ciudadSeleccionada.descripcion.slice(1);
-            document.getElementById("LugarTiempo").innerHTML = `<ion-icon name="pin-outline"></ion-icon> ${ciudadSeleccionada.ciudad.charAt(0).toUpperCase() + ciudadSeleccionada.ciudad.slice(1)}, Gipuzkoa`;
-            document.getElementById("TemperaturaFake").innerText = ciudadSeleccionada.temperatura_fake+"  ºC";
-        }
-    })
-    .catch(error => {
-        console.error("Error al cargar el archivo:", error);
-    });
+        .then(response => response.json())
+        .then(data => {
+            const ciudadSeleccionada = data.find(ciudad => ciudad.ciudad.toLowerCase() === x);
+
+            if (ciudadSeleccionada) {
+                document.getElementById("Temperatura").innerText = Math.floor(ciudadSeleccionada.temperatura_real) + "  ºC";
+                document.getElementById("temperatura1prediccion").innerText = ciudadSeleccionada.temperatura_real + "  ºC";
+                document.getElementById("AccionTiempo").innerText = ciudadSeleccionada.descripcion.charAt(0).toUpperCase() + ciudadSeleccionada.descripcion.slice(1);
+                document.getElementById("LugarTiempo").innerHTML = `<ion-icon name="pin-outline"></ion-icon> ${ciudadSeleccionada.ciudad.charAt(0).toUpperCase() + ciudadSeleccionada.ciudad.slice(1)}, Gipuzkoa`;
+                document.getElementById("TemperaturaFake").innerText = ciudadSeleccionada.temperatura_fake + "  ºC";
+            }
+        })
+        .catch(error => {
+            console.error("Error al cargar el archivo:", error);
+        });
     datosEntiempoReal(x);
-    
+
     const lugarSeleccionado = lugares.find(lugar => lugar.nombre.toLowerCase() === x);
     if (lugarSeleccionado) {
         const latitud = lugarSeleccionado.latitud;
         const longitud = lugarSeleccionado.longitud;
         console.log(latitud, longitud);
-    
+
         fetch(`https://openweathermap.org/data/2.5/onecall?lat=${latitud}&lon=${longitud}&units=metric&appid=439d4b804bc8187953eb36d2a8c26a02`)
             .then(response => response.json())
             .then(data => {
-                console.log(data);
-                document.getElementById("temperatura2prediccion").innerText = data.daily[0].temp.day+"  ºC";
-                document.getElementById("temperatura3prediccion").innerText = data.daily[1].temp.day+"  ºC";
-                document.getElementById("temperatura4prediccion").innerText = data.daily[2].temp.day+"  ºC";                
+                document.getElementById("temperatura2prediccion").innerText = data.daily[0].temp.day + "  ºC";
+                document.getElementById("temperatura3prediccion").innerText = data.daily[1].temp.day + "  ºC";
+                document.getElementById("temperatura4prediccion").innerText = data.daily[2].temp.day + "  ºC";
+                console.log(data.current.weather[0].description);
+                switch (data.current.weather[0].description) {
+                    case "broken clouds":
+                        document.getElementById("ImgCudrado1").src = "img/nube.png";
+                        document.getElementById("prediccionHoyImg").src = "img/nube.png";
+                        break;
+                    case "Drizzle":
+                        document.getElementById("ImgCudrado1").src = "img/nube.png";
+                        document.getElementById("prediccionHoyImg").src = "img/nube.png";
+                        break;
+                    case "scattered clouds":
+                        document.getElementById("ImgCudrado1").src = "img/nube.png";
+                        document.getElementById("prediccionHoyImg").src = "img/nube.png";
+                        break;
+                    case "cloud":
+                        document.getElementById("ImgCudrado1").src = "img/nube.png";
+                        document.getElementById("prediccionHoyImg").src = "img/nube.png";
+                        break;
+                    case "clouds":
+                        document.getElementById("ImgCudrado1").src = "img/nube.png";
+                        document.getElementById("prediccionHoyImg").src = "img/nube.png";
+                        break;
+                    case "overcast clouds":
+                        document.getElementById("ImgCudrado1").src = "img/nube.png";
+                        document.getElementById("prediccionHoyImg").src = "img/nube.png";
+                        break;
+                    case "clear sky":
+                        document.getElementById("ImgCudrado1").src = "/img/sol.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/sol.png";
+                        break;
+                    case "clear":
+                        document.getElementById("ImgCudrado1").src = "/img/sol.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/sol.png";
+                        break;
+                    case "few clouds":
+                        document.getElementById("ImgCudrado1").src = "img/nube.png";
+                        document.getElementById("prediccionHoyImg").src = "img/nube.png";
+                        break;
+                    case "shower rain":
+                        document.getElementById("ImgCudrado1").src = "/img/LluviaFuerte.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LluviaFuerte.png";
+                        break;
+                    case "light rain":
+                        document.getElementById("ImgCudrado1").src = "/img/LLovizna.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LLovizna.png";
+                        break;
+                    case "moderate rain":
+                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LLoviendo.png";
+                        break;
+                    case "heavy intensity rain":
+                        document.getElementById("ImgCudrado1").src = "/img/LluviaFuerte.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LluviaFuerte.png";
+                        break;
+                    case "very heavy rain":
+                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Tormenta.png";
+                        break;
+                    case "extreme rain":
+                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Tormenta.png";
+                        break;
+                    case "freezing rain":
+                        document.getElementById("ImgCudrado1").src = "/img/LlueviaGelida.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LlueviaGelida.png";
+                        break;
+                    case "light intensity shower rain":
+                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Tormenta.png";
+                        break;
+                    case "heavy intensity shower rain":
+                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Tormenta.png";
+                        break;
+                    case "ragged shower rain":
+                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LLoviendo.png";
+                        break;
+                    case "rain":
+                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LLoviendo.png";
+                        break;
+                    case "thunderstorm":
+                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Tormenta.png";
+                        break;
+                    case "snow":
+                        document.getElementById("ImgCudrado1").src = "/img/Nievefuerte.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Nievefuerte.png";
+                        break;
+                    case "mist":
+                        document.getElementById("ImgCudrado1").src = "/img/Niebla.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Niebla.png";
+                        break;
+                    case "haze":
+                        document.getElementById("ImgCudrado1").src = "/img/Bruma.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Bruma.png";
+                        break;
+                    case "fog":
+                        document.getElementById("ImgCudrado1").src = "/img/Niebla.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/Niebla.png";
+                        break;
+                    case "squall":
+                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
+                        document.getElementById("prediccionHoyImg").src = "/img/LLoviendo.png";
+                        break;
+                    
+                    default:
+                        document.getElementById("ImgCudrado1").src = "/img/cargando.gif";
+                        document.getElementById("prediccionHoyImg").src = "/img/cargando.gif";
+                        break;
+                }
             })
             .catch(error => {
                 console.error("Error al cargar el archivo:", error);
             });
     } else {
         console.error("No se encontró la información de longitud y latitud para la ciudad seleccionada");
-    } 
-    
+    }
+
 }
 
+//Pinta la TemperaturaFake que la recoge de la BBDD
 function datosEntiempoReal(x) {
     x = x.toLowerCase();
     setInterval(() => {
         fetch(laravelApi + `/api/getTiempoDato?ciudad=${x}`)
-        .then(response => response.json())
-        .then(data => {
-            const ciudadSeleccionada = data.find(ciudad => ciudad.ciudad.toLowerCase() === x);
-            
-            if (ciudadSeleccionada) {
-                document.getElementById("TemperaturaFake").innerText = ciudadSeleccionada.temperatura_fake+"  ºC";
-            }
-        })
-        .catch(error => {
-            console.error("Error al cargar el archivo:", error);
-        });
+            .then(response => response.json())
+            .then(data => {
+                const ciudadSeleccionada = data.find(ciudad => ciudad.ciudad.toLowerCase() === x);
+
+                if (ciudadSeleccionada) {
+                    document.getElementById("TemperaturaFake").innerText = ciudadSeleccionada.temperatura_fake + "  ºC";
+                }
+            })
+            .catch(error => {
+                console.error("Error al cargar el archivo:", error);
+            });
     }, 10000);
-       
+
 }
 
 
@@ -201,26 +282,26 @@ function LeeElemento(ciudad) {
             break;
         case 'bilbao':
             fetch(`https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/great_bilbao/locations/bilbao/forecast/at/${hoy}/for/${hoy1}`, options)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                document.getElementById("prediccionManana").textContent = data.temperature.value + " Cº";
-            })
-            .catch(error => {
-                console.error("Error al cargar el archivo:", error);
-            });
-        break;
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("prediccionManana").textContent = data.temperature.value + " Cº";
+                })
+                .catch(error => {
+                    console.error("Error al cargar el archivo:", error);
+                });
+            break;
         case 'renteria':
             fetch(`https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/donostialdea/locations/errenteria/forecast/at/${hoy}/for/${hoy1}`, options)
-            .then(response => response.json())
-            .then(data => {
-                console.log(data);
-                document.getElementById("prediccionManana").textContent = data.temperature.value + " Cº";
-            })
-            .catch(error => {
-                console.error("Error al cargar el archivo:", error);
-            });
-        break;
+                .then(response => response.json())
+                .then(data => {
+                    console.log(data);
+                    document.getElementById("prediccionManana").textContent = data.temperature.value + " Cº";
+                })
+                .catch(error => {
+                    console.error("Error al cargar el archivo:", error);
+                });
+            break;
         case 'zarautz':
             fetch(`https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/zarautz/forecast/at/${hoy}/for/${hoy1}`, options)
                 .then(response => response.json())
@@ -236,11 +317,3 @@ function LeeElemento(ciudad) {
             console.log('Ciudad no reconocida');
     }
 }
-
-
-// https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/irun/forecast/at/${hoy}/for/${hoy1}
-// https://api.euskadi.eus/euskalmet/weather/regions/basque_country/zones/coast_zone/locations/zarautz/forecast/at/2024/01/18/for/20240119
-//`https://api.euskadi.eus/euskalmet/geo/regions/basque_country/zones/donostialdea/locations` errenteria y Donostia
-// `https://api.euskadi.eus/euskalmet/geo/regions/basque_country/zones/great_bilbao/locations` bilbao y barakaldo
-// 
-

@@ -42,12 +42,12 @@ services:
       - ./Database:/var/lib/mysql
   
   #Primer laravel Visualiza los datos Y hace Login/register
-  laravelpassport:
+  Sky-SnapApi:
     image: markosmartinez/laravelpassport-php8.2
     restart: always
-    container_name: LaravelPassport
+    container_name: Sky-SnapApi
     volumes:
-      - ./LaravelLogin/:/var/www/html/
+      - ./Sky-SnapApi/:/var/www/html/
     ports:
       - "8090:8000"
     depends_on:
