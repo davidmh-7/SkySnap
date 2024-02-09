@@ -15,6 +15,7 @@
         filter: hue-rotate(140deg) brightness(100%);
     }
 </style>
+
 <body>
     <div id="LoginInicio">
         <div class="wrapper">
@@ -76,9 +77,10 @@
                     </div>
                     <div class="input-box" id="registroConCargando" style="position: relative;">
                         <input type="submit" id="registerBtn" class="submit" value="Regístrate" onclick="register()">
-                        <img src="img/cargando.gif" alt="Cargando..." id="cargandoIcono" style="width: 20px; height: 20px; position: absolute; top: 50%; right: -30px; transform: translateY(-50%); display: none;">
+                        <img src="img/cargando.gif" alt="Cargando..." id="cargandoIcono"
+                            style="width: 20px; height: 20px; position: absolute; top: 50%; right: -30px; transform: translateY(-50%); display: none;">
                     </div>
-                    
+
                     <div class="two-col">
                         <div class="one">
                             <input type="checkbox" id="register-check">
@@ -137,7 +139,7 @@
                     loginEnsenarContra.type = 'password';
                 }
             });
-            
+
         </script>
         <script src="js/Login.js"></script>
         <script src="js/Precarga.js"></script>

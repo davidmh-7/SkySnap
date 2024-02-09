@@ -466,7 +466,7 @@ function cambiarCiudad(x) {
                         document.getElementById("prediccion3Img").src = "/img/cargando.gif";
                         break;
                 }
-                
+
             })
             .catch(error => {
                 console.error("Error al cargar el archivo:", error);

@@ -83,6 +83,4 @@ function diaSemana() {
 }
 diaSemana();
 
-// Funcion para 
-
 
