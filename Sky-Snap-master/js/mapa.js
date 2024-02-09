@@ -100,9 +100,9 @@ function cambiarCiudad(x) {
         fetch(`https://openweathermap.org/data/2.5/onecall?lat=${latitud}&lon=${longitud}&units=metric&appid=439d4b804bc8187953eb36d2a8c26a02`)
             .then(response => response.json())
             .then(data => {
-                $("#temperatura2prediccion").text(data.daily[0].temp.day + " ºC").attr("title", "Prediccion para mañana: " + data.daily[0].weather[0].description + " ºC");
-                $("#temperatura3prediccion").text(data.daily[1].temp.day + " ºC").attr("title", "Prediccion para pasado mañana: " + data.daily[1].weather[0].description + " ºC");
-                $("#temperatura4prediccion").text(data.daily[2].temp.day + " ºC").attr("title", "Prediccion para dentro de 3 días: " + data.daily[2].weather[0].description + " ºC");
+                $("#temperatura2prediccion").text(data.daily[0].temp.day + " ºC").attr("title", "Prediccion para mañana: " + data.daily[0].weather[0].description);
+                $("#temperatura3prediccion").text(data.daily[1].temp.day + " ºC").attr("title", "Prediccion para pasado mañana: " + data.daily[1].weather[0].description);
+                $("#temperatura4prediccion").text(data.daily[2].temp.day + " ºC").attr("title", "Prediccion para dentro de 3 días: " + data.daily[2].weather[0].description);
                 console.log(data.current.weather[0].description);
 
                 switch (data.current.weather[0].description) {
@@ -216,109 +216,83 @@ function cambiarCiudad(x) {
                         document.getElementById("prediccionHoyImg").src = "/img/cargando.gif";
                         break;
                 }
-                switch (data.current.weather[1].description) {
+                switch (data.daily[0].weather[0].description) {
                     case "broken clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion1Img").src = "img/nube.png";
                         break;
                     case "Drizzle":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion1Img").src = "img/nube.png";
                         break;
                     case "scattered clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion1Img").src = "img/nube.png";
                         break;
                     case "cloud":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion1Img").src = "img/nube.png";
                         break;
                     case "clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion1Img").src = "img/nube.png";
                         break;
                     case "overcast clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion1Img").src = "img/nube.png";
                         break;
                     case "clear sky":
-                        document.getElementById("ImgCudrado1").src = "/img/sol.png";
                         document.getElementById("prediccion1Img").src = "/img/sol.png";
                         break;
                     case "clear":
-                        document.getElementById("ImgCudrado1").src = "/img/sol.png";
                         document.getElementById("prediccion1Img").src = "/img/sol.png";
                         break;
                     case "few clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion1Img").src = "img/nube.png";
                         break;
                     case "shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LluviaFuerte.png";
                         document.getElementById("prediccion1Img").src = "/img/LluviaFuerte.png";
                         break;
                     case "light rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLovizna.png";
                         document.getElementById("prediccion1Img").src = "/img/LLovizna.png";
                         break;
                     case "moderate rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion1Img").src = "/img/LLoviendo.png";
                         break;
                     case "heavy intensity rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LluviaFuerte.png";
                         document.getElementById("prediccion1Img").src = "/img/LluviaFuerte.png";
                         break;
                     case "very heavy rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion1Img").src = "/img/Tormenta.png";
                         break;
                     case "extreme rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion1Img").src = "/img/Tormenta.png";
                         break;
                     case "freezing rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LlueviaGelida.png";
                         document.getElementById("prediccion1Img").src = "/img/LlueviaGelida.png";
                         break;
                     case "light intensity shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion1Img").src = "/img/Tormenta.png";
                         break;
                     case "heavy intensity shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion1Img").src = "/img/Tormenta.png";
                         break;
                     case "ragged shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion1Img").src = "/img/LLoviendo.png";
                         break;
                     case "rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion1Img").src = "/img/LLoviendo.png";
                         break;
                     case "thunderstorm":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion1Img").src = "/img/Tormenta.png";
                         break;
                     case "snow":
-                        document.getElementById("ImgCudrado1").src = "/img/Nievefuerte.png";
                         document.getElementById("prediccion1Img").src = "/img/Nievefuerte.png";
                         break;
                     case "mist":
-                        document.getElementById("ImgCudrado1").src = "/img/Niebla.png";
                         document.getElementById("prediccion1Img").src = "/img/Niebla.png";
                         break;
                     case "haze":
-                        document.getElementById("ImgCudrado1").src = "/img/Bruma.png";
                         document.getElementById("prediccion1Img").src = "/img/Bruma.png";
                         break;
                     case "fog":
-                        document.getElementById("ImgCudrado1").src = "/img/Niebla.png";
                         document.getElementById("prediccion1Img").src = "/img/Niebla.png";
                         break;
                     case "squall":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion1Img").src = "/img/LLoviendo.png";
                         break;
 
@@ -326,118 +300,173 @@ function cambiarCiudad(x) {
                         document.getElementById("prediccion1Img").src = "/img/cargando.gif";
                         break;
                 }
-               
-                switch (data.current.weather[2].description) {
+                switch (data.daily[2].weather[0].description) {
                     case "broken clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion2Img").src = "img/nube.png";
                         break;
                     case "Drizzle":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion2Img").src = "img/nube.png";
                         break;
                     case "scattered clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion2Img").src = "img/nube.png";
                         break;
                     case "cloud":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion2Img").src = "img/nube.png";
                         break;
                     case "clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion2Img").src = "img/nube.png";
                         break;
                     case "overcast clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion2Img").src = "img/nube.png";
                         break;
                     case "clear sky":
-                        document.getElementById("ImgCudrado1").src = "/img/sol.png";
                         document.getElementById("prediccion2Img").src = "/img/sol.png";
                         break;
                     case "clear":
-                        document.getElementById("ImgCudrado1").src = "/img/sol.png";
                         document.getElementById("prediccion2Img").src = "/img/sol.png";
                         break;
                     case "few clouds":
-                        document.getElementById("ImgCudrado1").src = "img/nube.png";
                         document.getElementById("prediccion2Img").src = "img/nube.png";
                         break;
                     case "shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LluviaFuerte.png";
                         document.getElementById("prediccion2Img").src = "/img/LluviaFuerte.png";
                         break;
                     case "light rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLovizna.png";
                         document.getElementById("prediccion2Img").src = "/img/LLovizna.png";
                         break;
                     case "moderate rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion2Img").src = "/img/LLoviendo.png";
                         break;
                     case "heavy intensity rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LluviaFuerte.png";
                         document.getElementById("prediccion2Img").src = "/img/LluviaFuerte.png";
                         break;
                     case "very heavy rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion2Img").src = "/img/Tormenta.png";
                         break;
                     case "extreme rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion2Img").src = "/img/Tormenta.png";
                         break;
                     case "freezing rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LlueviaGelida.png";
                         document.getElementById("prediccion2Img").src = "/img/LlueviaGelida.png";
                         break;
                     case "light intensity shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion2Img").src = "/img/Tormenta.png";
                         break;
                     case "heavy intensity shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion2Img").src = "/img/Tormenta.png";
                         break;
                     case "ragged shower rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion2Img").src = "/img/LLoviendo.png";
                         break;
                     case "rain":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion2Img").src = "/img/LLoviendo.png";
                         break;
                     case "thunderstorm":
-                        document.getElementById("ImgCudrado1").src = "/img/Tormenta.png";
                         document.getElementById("prediccion2Img").src = "/img/Tormenta.png";
                         break;
                     case "snow":
-                        document.getElementById("ImgCudrado1").src = "/img/Nievefuerte.png";
                         document.getElementById("prediccion2Img").src = "/img/Nievefuerte.png";
                         break;
                     case "mist":
-                        document.getElementById("ImgCudrado1").src = "/img/Niebla.png";
                         document.getElementById("prediccion2Img").src = "/img/Niebla.png";
                         break;
                     case "haze":
-                        document.getElementById("ImgCudrado1").src = "/img/Bruma.png";
                         document.getElementById("prediccion2Img").src = "/img/Bruma.png";
                         break;
                     case "fog":
-                        document.getElementById("ImgCudrado1").src = "/img/Niebla.png";
                         document.getElementById("prediccion2Img").src = "/img/Niebla.png";
                         break;
                     case "squall":
-                        document.getElementById("ImgCudrado1").src = "/img/LLoviendo.png";
                         document.getElementById("prediccion2Img").src = "/img/LLoviendo.png";
                         break;
-
                     default:
-
                         document.getElementById("prediccion2Img").src = "/img/cargando.gif";
                         break;
                 }
+                switch (data.daily[3].weather[0].description) {
+                    case "broken clouds":
+                        document.getElementById("prediccion3Img").src = "img/nube.png";
+                        break;
+                    case "Drizzle":
+                        document.getElementById("prediccion3Img").src = "img/nube.png";
+                        break;
+                    case "scattered clouds":
+                        document.getElementById("prediccion3Img").src = "img/nube.png";
+                        break;
+                    case "cloud":
+                        document.getElementById("prediccion3Img").src = "img/nube.png";
+                        break;
+                    case "clouds":
+                        document.getElementById("prediccion3Img").src = "img/nube.png";
+                        break;
+                    case "overcast clouds":
+                        document.getElementById("prediccion3Img").src = "img/nube.png";
+                        break;
+                    case "clear sky":
+                        document.getElementById("prediccion3Img").src = "/img/sol.png";
+                        break;
+                    case "clear":
+                        document.getElementById("prediccion3Img").src = "/img/sol.png";
+                        break;
+                    case "few clouds":
+                        document.getElementById("prediccion3Img").src = "img/nube.png";
+                        break;
+                    case "shower rain":
+                        document.getElementById("prediccion3Img").src = "/img/LluviaFuerte.png";
+                        break;
+                    case "light rain":
+                        document.getElementById("prediccion3Img").src = "/img/LLovizna.png";
+                        break;
+                    case "moderate rain":
+                        document.getElementById("prediccion3Img").src = "/img/LLoviendo.png";
+                        break;
+                    case "heavy intensity rain":
+                        document.getElementById("prediccion3Img").src = "/img/LluviaFuerte.png";
+                        break;
+                    case "very heavy rain":
+                        document.getElementById("prediccion3Img").src = "/img/Tormenta.png";
+                        break;
+                    case "extreme rain":
+                        document.getElementById("prediccion3Img").src = "/img/Tormenta.png";
+                        break;
+                    case "freezing rain":
+                        document.getElementById("prediccion3Img").src = "/img/LlueviaGelida.png";
+                        break;
+                    case "light intensity shower rain":
+                        document.getElementById("prediccion3Img").src = "/img/Tormenta.png";
+                        break;
+                    case "heavy intensity shower rain":
+                        document.getElementById("prediccion3Img").src = "/img/Tormenta.png";
+                        break;
+                    case "ragged shower rain":
+                        document.getElementById("prediccion3Img").src = "/img/LLoviendo.png";
+                        break;
+                    case "rain":
+                        document.getElementById("prediccion3Img").src = "/img/LLoviendo.png";
+                        break;
+                    case "thunderstorm":
+                        document.getElementById("prediccion3Img").src = "/img/Tormenta.png";
+                        break;
+                    case "snow":
+                        document.getElementById("prediccion3Img").src = "/img/Nievefuerte.png";
+                        break;
+                    case "mist":
+                        document.getElementById("prediccion3Img").src = "/img/Niebla.png";
+                        break;
+                    case "haze":
+                        document.getElementById("prediccion3Img").src = "/img/Bruma.png";
+                        break;
+                    case "fog":
+                        document.getElementById("prediccion3Img").src = "/img/Niebla.png";
+                        break;
+                    case "squall":
+                        document.getElementById("prediccion3Img").src = "/img/LLoviendo.png";
+                        break;
+                    default:
+                        document.getElementById("prediccion3Img").src = "/img/cargando.gif";
+                        break;
+                }
+                
             })
             .catch(error => {
                 console.error("Error al cargar el archivo:", error);
@@ -540,13 +569,13 @@ function LeeElemento(ciudad) {
     }
 }
 // Pone active en los botones
-$(document).ready(function() {
+$(document).ready(function () {
     $('#inbox').css({
         'background-color': 'rgba(8, 3, 3, 0.197)',
         'color': '#eeeeee32'
     });
 
-    $('#favoritos').on('click', 'a', function() {
+    $('#favoritos').on('click', 'a', function () {
         $('#favoritos a').css({
             'background-color': '',
             'color': ''
@@ -564,8 +593,8 @@ $(document).ready(function() {
             'color': ''
         });
     });
-    
-    $('#inbox').on('click', function() {
+
+    $('#inbox').on('click', function () {
         $(this).css({
             'background-color': 'rgba(8, 3, 3, 0.197)',
             'color': '#eeeeee32'

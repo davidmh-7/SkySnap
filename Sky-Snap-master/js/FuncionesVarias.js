@@ -82,3 +82,7 @@ function diaSemana() {
     setInterval(diaSemana, 300000);
 }
 diaSemana();
+
+// Funcion para 
+
+
