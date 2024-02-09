@@ -1,4 +1,3 @@
-// Drag and drop
 $("#porcentajeLluvia,#porcentajeBruma,#porcentajeBrisa").on("dragstart", function (event) {
     event.originalEvent.dataTransfer.setData("text/plain", event.target.id);
 })
@@ -11,22 +10,14 @@ $("#destino, #destinoInicio").on('drop', function (event) {
     var draggedElement = document.getElementById(data);
     if (event.target !== draggedElement) {
         $(draggedElement).attr('draggable', true)
-
         console.log(draggedElement)
         var textoDrag = document.createElement('div');
         var parrafo = document.createElement('p');
         textoDrag.style.display = "inline-block"
         textoDrag.id = 'DragTexto';
-        parrafo.id = "parrafo"
         parrafo.innerHTML = "22KM/H";
         textoDrag.appendChild(draggedElement);
         textoDrag.appendChild(parrafo);
         event.target.appendChild(textoDrag);
     }
 });
-
-$("#destinoInicio").on('drop', function (event) {
-    let texto = document.getElementById("DragTexto")
-    let parrafo = document.getElementById("parrafo")
-    parrafo.innerHTML = ''
-})

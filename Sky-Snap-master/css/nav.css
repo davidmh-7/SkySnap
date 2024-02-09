@@ -254,10 +254,6 @@ body{
     font-size: 20px;
 }
 /* Main */
-#inbox{
-    background-color: var(--color-menu-hover);
-    color: var(--color-menu-hover-texto);
-}
 main{
     margin-left: 250px;
     padding: 20px;
