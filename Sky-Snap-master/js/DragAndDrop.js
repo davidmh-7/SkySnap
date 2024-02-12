@@ -22,7 +22,7 @@ $("#destino, #destinoInicio").on('drop', function(event) {
 
     var p = document.createElement("p");
     p.id = "p_" + id; 
-    p.textContent = "Descripción de la imagen aquí.";
+    p.textContent = "";
 
     var destino = event.target;
     destino.appendChild(img);

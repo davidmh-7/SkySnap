@@ -253,7 +253,6 @@ h6 {
     font-family: 'Outfit', sans-serif;
 }
 
-
 #sensor2 {
     width: 47.5%;
     height: 98%;
@@ -559,6 +558,40 @@ h6 {
         height: 30px;
         margin-left: 12%;
         display: inline-block;
+    }
+    #temperatura1prediccion, #temperatura2prediccion, #temperatura3prediccion, #temperatura4prediccion {
+        color: white;
+        font-size: 10px;
+        margin-top: 1%;
+        font-weight: 200;
+        text-shadow: 0 0 4px rgb(3, 3, 3);
+        display: inline-block;
+        font-family: 'Outfit', sans-serif;
+
+    }
+    #temperaturaManana1, #temperaturaManana2, #temperaturaManana3, #temperaturaManana4 {
+        color: white;
+        font-size: 10px;
+        font-weight: 200;
+        text-shadow: 0 0 4px rgb(3, 3, 3);
+        width: 30%;
+        margin-left: 20%;
+        margin-right: 10%;
+    }
+    #sensorDatosFake {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
+    #TemperaturaFake{
+        color: white;
+        font-size: 19px;
+        text-shadow: 0 0 3px rgb(3, 3, 3);
+        font-family: 'Outfit', sans-serif;
+        margin-left: 20px;
+    }
+    .temperaturaTiemporeal{
+        margin-bottom: -30px;
     }
 
 }
